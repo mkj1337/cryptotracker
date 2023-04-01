@@ -8,7 +8,6 @@ import './Navbar.scss';
 // icons
 
 import { FaDiscord, FaTwitter, FaBars } from 'react-icons/fa';
-import { IoCloseSharp } from 'react-icons/Io';
 
 export const Navbar = () => {
   const navRef = useRef<any>(null);
@@ -81,7 +80,7 @@ export const Navbar = () => {
         {!activeMenu ? (
           <FaBars onClick={handleClick} />
         ) : (
-          <IoCloseSharp onClick={handleClick} />
+          <span onClick={handleClick}>X</span>
         )}
       </div>
     </nav>
