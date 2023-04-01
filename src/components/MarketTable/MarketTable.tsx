@@ -7,7 +7,7 @@ import { Pagination } from '../Pagination/Pagination';
 import { Link } from 'react-router-dom';
 
 export const MarketTable = () => {
-  const [cryptos, setCryptos] = useState([]);
+  const [cryptos, setCryptos] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

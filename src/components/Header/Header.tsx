@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Header.scss';
 
 export const Header = () => {
-  const [cryptos, setCryptos] = useState([]);
+  const [cryptos, setCryptos] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchTopCrypto = async () => {
@@ -24,13 +24,13 @@ export const Header = () => {
   return (
     <header className="header">
       <p className="header__title">
-      Effortlessly Track 
+        Effortlessly Track
         <span>Crypto Market Changes</span>
       </p>
       <div className="header__crypto">
         {cryptos.map((crypto) => (
           <div className="header__single" key={crypto.id}>
-            <img src={crypto.image} alt="" />
+          <img src={crypto?.image} alt="" />
             <h2>
               {crypto.name}{' '}
               <span

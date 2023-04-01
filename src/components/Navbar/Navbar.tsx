@@ -10,9 +10,9 @@ import { GrTwitter } from 'react-icons/gr';
 import { FaDiscord } from 'react-icons/fa';
 
 export const Navbar = () => {
-  const navRef = useRef(null);
-  const menuRef = useRef(null);
-  const socialRef = useRef(null);
+  const navRef = useRef<any>(null);
+  const menuRef = useRef<any>(null);
+  const socialRef = useRef<any>(null);
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
 
   const handleScroll = () => {
