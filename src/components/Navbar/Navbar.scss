@@ -1,0 +1,157 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 350px;
+    z-index: 100;
+    transition: .1s ease-in;
+
+    a {
+        text-decoration: none;
+    }
+
+    .navbar__title {
+        font-size: 1.7rem;
+        letter-spacing: .1rem;
+        color: #fff;
+    }
+
+    .navbar__menu {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style-type: none;
+
+        .navbar__item a{
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: .3s ease-in;
+            width: 300px;
+            height: 100px;
+            border-radius: 20px;
+            background: linear-gradient(265.27deg, #0000 20.55%, #fff 90.17%);  
+            background-color: #fff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            -moz-background-clip: text;
+            -moz-text-fill-color: transparent;
+         
+            &:hover {
+                transition: .3s ease-in;
+                background: linear-gradient(265.27deg, #1267e7b7 20.55%, #fff 90.17%); 
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
+        }
+    }
+
+    .navbar__socialmedia {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.3rem;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            width: 30px;
+            height: 30px;
+            font-weight: 600;
+            background-color: #fff;
+            transition: .3s ease-in;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            -moz-background-clip: text;
+            -moz-text-fill-color: transparent;
+            &:hover {
+                transition: .3s ease-in;
+                background: linear-gradient(265.27deg, #1267e7b7 20.55%, #fff 90.17%); 
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
+        }
+    }
+
+    .navbar__btn {
+        display: none;
+    }
+}
+
+.navbar.active {
+    background-color: rgba(11, 17, 82, 0.904);  
+    -webkit-box-shadow: 1px 7px 21px -3px rgba(11, 17, 82, 0.582);
+    -moz-box-shadow: 1px 7px 21px -3px rgba(11, 17, 82, 0.582);
+    box-shadow: 1px 7px 21px -3px rgba(11, 17, 82, 0.582);
+    padding: 40px 360px;
+}
+
+@media screen and (max-width: 1500px){
+    .navbar {
+        padding: 35px 150px!important;
+    }
+    
+}
+
+@media screen and (max-width: 1200px){
+    .navbar {
+        padding: 35px 100px!important;
+
+        .navbar__menu{
+            position: absolute;
+            left: -150%;
+            top: 105px;
+            width: 100%;
+            height: calc(100vh - 105px);
+            flex-direction: column;
+            padding: 150px 0;
+            gap: 25px;
+            background-color: rgba(11, 17, 82, 0.904);  
+            backdrop-filter: blur(5px);  
+            transition: .5s ease-in;
+        }
+
+        .navbar__menu.active {
+            transition: .5s ease-in;
+            left: 0;
+ 
+        }
+
+        .navbar__socialmedia{
+            position: absolute;
+            left: -150%;
+            top: 460px;
+            transition: .5s ease-in;
+        }
+
+        .navbar__socialmedia.active {
+            left: 50%;
+            transform: translateX(-50%);
+            transition: .5s ease-in;
+        }
+
+        .navbar__btn {
+            display: block;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 800px){
+    .navbar {
+        padding: 35px 30px!important;
+
+    }
+    
+}
