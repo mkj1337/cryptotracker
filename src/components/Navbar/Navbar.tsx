@@ -6,8 +6,9 @@ import { useRef, useEffect, useState } from 'react';
 import './Navbar.scss';
 
 // icons
-import { GrTwitter } from 'react-icons/gr';
-import { FaDiscord } from 'react-icons/fa';
+
+import { FaDiscord, FaTwitter, FaBars } from 'react-icons/fa';
+import { IoCloseSharp } from 'react-icons/Io5';
 
 export const Navbar = () => {
   const navRef = useRef<any>(null);
@@ -38,7 +39,7 @@ export const Navbar = () => {
   const scrollToTop = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
+  };
 
   return (
     <nav className="navbar" ref={navRef}>
@@ -70,17 +71,17 @@ export const Navbar = () => {
       </ul>
       <div className="navbar__socialmedia" ref={socialRef}>
         <a href="#">
-          <i class="fa-brands fa-twitter"></i>
+          <FaTwitter />
         </a>
         <a href="#">
-          <i class="fa-brands fa-discord"></i>
+          <FaDiscord />
         </a>
       </div>
       <div className="navbar__btn">
         {!activeMenu ? (
-          <i class="fa-solid fa-bars" onClick={handleClick}></i>
+          <FaBars onClick={handleClick} />
         ) : (
-          <i class="fa-solid fa-xmark" onClick={handleClick}></i>
+          <IoCloseSharp onClick={handleClick} />
         )}
       </div>
     </nav>
