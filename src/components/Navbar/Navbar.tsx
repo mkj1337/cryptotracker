@@ -8,7 +8,7 @@ import './Navbar.scss';
 // icons
 
 import { FaDiscord, FaTwitter, FaBars } from 'react-icons/fa';
-import { IoCloseSharp } from 'react-icons/Io5';
+import { IoCloseSharp } from 'react-icons/Io';
 
 export const Navbar = () => {
   const navRef = useRef<any>(null);
