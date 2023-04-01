@@ -69,7 +69,18 @@
         thead{
             th{
                 font-size: 1rem!important;
-               
+
+                &:last-child{
+                    display: none;
+                }
+            }
+        }
+
+        tbody {
+            tr{
+                td:last-child{
+                    display: none!important;
+                }
             }
         }
     }
