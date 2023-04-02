@@ -6,8 +6,8 @@ import { useRef, useEffect, useState } from 'react';
 import './Navbar.scss';
 
 // icons
-
 import { FaDiscord, FaTwitter, FaBars } from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
 
 export const Navbar = () => {
   const navRef = useRef<any>(null);
@@ -80,7 +80,7 @@ export const Navbar = () => {
         {!activeMenu ? (
           <FaBars onClick={handleClick} />
         ) : (
-          <span onClick={handleClick}>X</span>
+          <AiOutlineClose onClick={handleClick} />
         )}
       </div>
     </nav>

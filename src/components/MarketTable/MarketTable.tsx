@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 // styles
 import './MarketTable.scss';
@@ -33,8 +34,13 @@ export const MarketTable = () => {
   const currentCryptos = cryptos.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <div className="market__wrapper" id="market">
-      <h2 className="market__title">Market Update</h2>
+    <motion.div
+      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -50, opacity: 0 }}
+      className="market__wrapper"
+      id="market"
+    >
+      {/* <h2 className="market__title">Market Update</h2> */}
       <table>
         <thead>
           <tr>
@@ -46,32 +52,33 @@ export const MarketTable = () => {
         </thead>
         <tbody>
           {isLoading && <span>Loading...</span>}
-          {cryptos.length ? (
-            currentCryptos.map((crypto) => (
-              <tr key={crypto.name}>
-                <td>
-                  <Link to={`/coin/${crypto?.id}`}>
-                    <img src={crypto.image} alt="" />
-                    <span>{crypto.name}</span>
-                  </Link>
-                </td>
+          {cryptos.length
+            ? currentCryptos.map((crypto) => (
+                <tr key={crypto.name}>
+                  <td>
+                    <Link to={`/coin/${crypto?.id}`}>
+                      <img src={crypto.image} alt="" />
+                      <span>{crypto.name}</span>
+                    </Link>
+                  </td>
 
-                <td>{crypto.current_price} $</td>
-                <td
-                  style={
-                    crypto.price_change_percentage_24h > 0
-                      ? { color: 'green' }
-                      : { color: 'red' }
-                  }
-                >
-                  {Number(crypto.price_change_percentage_24h).toFixed(2)}%
-                </td>
-                <td>{crypto.market_cap} $</td>
-              </tr>
-            ))
-          ) : (
-            ''
-          )}
+                  <td>{crypto.current_price.toLocaleString()} $</td>
+                  <td
+                    style={
+                      crypto.price_change_percentage_24h > 0
+                        ? { color: 'green' }
+                        : { color: 'red' }
+                    }
+                  >
+                    {Number(crypto.price_change_percentage_24h)
+                      .toFixed(2)
+                      .toLocaleString()}
+                    %
+                  </td>
+                  <td>{crypto.market_cap.toLocaleString()} $</td>
+                </tr>
+              ))
+            : ''}
         </tbody>
       </table>
       <div className="market__pagination">
@@ -81,6 +88,6 @@ export const MarketTable = () => {
           setCurrentPage={setCurrentPage}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
