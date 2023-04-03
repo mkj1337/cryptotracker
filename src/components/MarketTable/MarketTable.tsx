@@ -34,10 +34,10 @@ export const MarketTable = () => {
     switch (clicks) {
       case 0:
         setClicks(1);
-        return cryptos.sort((a, b) => (b[sortBy] > a[sortBy] ? -1 : 1));
+        return cryptos.sort((a, b) => (b[sortBy] < a[sortBy] ? -1 : 1));
       case 1:
         setClicks(0);
-        return cryptos.sort((a, b) => (b[sortBy] < a[sortBy] ? -1 : 1));
+        return cryptos.sort((a, b) => (b[sortBy] > a[sortBy] ? -1 : 1));
       default:
         return cryptos;
     }
