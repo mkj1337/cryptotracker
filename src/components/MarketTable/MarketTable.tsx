@@ -32,11 +32,11 @@ export const MarketTable = () => {
   }, []);
 
   const sortCryptos = (
-    e: React.MouseEvent<HTMLTableElement>,
+    e: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>,
     sortBy: string
   ) => {
     if (headRef.current) {
-      Array.from(headRef.current.children).forEach((el) => {
+      Array.from(headRef.current['children']).forEach((el) => {
         if ((el as HTMLTableElement).className.includes('active'))
           return (el as HTMLTableElement).classList.remove('active');
       });
