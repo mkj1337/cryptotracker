@@ -28,7 +28,7 @@ ChartJS.register(
 
 export const HistoryChart = () => {
   const { coin } = useParams();
-  const [coinData, setCoinData] = useState([]);
+  const [coinData, setCoinData] = useState<any>([]);
 
   useEffect(() => {
     const fetchHistoryData = async () => {
@@ -44,7 +44,7 @@ export const HistoryChart = () => {
     fetchHistoryData();
   }, []);
 
-  const coinChartData = coinData.prices?.map((value) => ({
+  const coinChartData = coinData.prices?.map((value: any) => ({
     x: value[0],
     y: value[1].toFixed(2),
   }));
@@ -54,19 +54,23 @@ export const HistoryChart = () => {
   };
 
   const data = {
-    labels: coinChartData?.map(value => moment(value.x).format('MMM DD')),
+    labels: coinChartData?.map((value: any) =>
+      moment(value.x).format('MMM DD')
+    ),
     datasets: [
       {
         fill: true,
         label: coin,
-        data: coinChartData?.map(val => val.y),
+        data: coinChartData?.map((val: any) => val.y),
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      }
-    ]
-  }
+      },
+    ],
+  };
 
-  return <div>
-     <Line options={options} data={data} />
-  </div>;
+  return (
+    <div>
+      <Line options={options} data={data} />
+    </div>
+  );
 };
