@@ -18,3 +18,10 @@ body {
     background: linear-gradient(-170deg, rgb(4, 1, 70) 0%, rgb(51, 15, 80) 55%, rgb(44, 30, 165) 100%) fixed;
     color: #fff;
 }
+
+.home,
+.single__coin {
+    position: relative;
+    top: 105px;
+    padding: 15px 350px;
+}
