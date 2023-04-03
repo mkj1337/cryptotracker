@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     padding-top: 100px;
-    gap: 120px;
+    gap: 140px;
 
     .header__title {
         display: flex;
@@ -69,23 +69,30 @@
         .header__crypto{
             padding: 10px;
             width: 650px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: nowrap!important;
-            overflow: hidden;
-            
+
+            img {
+                width: 70px;
+            }
+         
             .header__single{
-                animation:  scroll 10s linear infinite;
-                position: relative;
-                left: 405px;
-                flex-direction: column;
+               
+          
               
                 gap: 0px;
                 h2 {
+                    font-size: 1rem;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    gap: 5px;
+                    
+                }
+
+                .price {
+                    font-size: 0.9rem;
                 }
             }
         }
@@ -93,7 +100,7 @@
     
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 500px){
     .header {
         gap: 80px;
         padding-top: 10px;
@@ -101,14 +108,11 @@
             width: 350px;
         }
         .header__title{
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             line-height: 3rem;
         }
     }
     
 }
 
-@keyframes scroll {
-	0% { transform: translateX(0); }
-	100% { transform: translateX(calc(-110px * 5))}
-}
+

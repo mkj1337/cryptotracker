@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Slider.scss';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 export const Slider = () => {
   const [cryptos, setCryptos] = useState<any[]>([]);

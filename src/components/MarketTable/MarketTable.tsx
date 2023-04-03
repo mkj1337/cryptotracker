@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
@@ -12,6 +12,7 @@ export const MarketTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [clicks, setClicks] = useState<number>(0);
+  const headRef = useRef(null);
 
   useEffect(() => {
     const fetchTopCrypto = async () => {
@@ -30,7 +31,17 @@ export const MarketTable = () => {
     fetchTopCrypto();
   }, []);
 
-  const sortCryptos = (sortBy: string) => {
+  const sortCryptos = (
+    e: React.MouseEvent<HTMLTableElement>,
+    sortBy: string
+  ) => {
+    if (headRef.current) {
+      Array.from(headRef.current.children).forEach((el) => {
+        if ((el as HTMLTableElement).className.includes('active'))
+          return (el as HTMLTableElement).classList.remove('active');
+      });
+    }
+    (e.target as HTMLTableElement).classList.add('active');
     switch (clicks) {
       case 0:
         setClicks(1);
@@ -56,13 +67,13 @@ export const MarketTable = () => {
     >
       <table>
         <thead>
-          <tr>
-            <th onClick={() => sortCryptos('name')}>Coin</th>
-            <th onClick={() => sortCryptos('current_price')}>Price</th>
-            <th onClick={() => sortCryptos('price_change_percentage_24h')}>
+          <tr ref={headRef}>
+            <th onClick={(e) => sortCryptos(e, 'name')}>Coin</th>
+            <th onClick={(e) => sortCryptos(e, 'current_price')}>Price</th>
+            <th onClick={(e) => sortCryptos(e, 'price_change_percentage_24h')}>
               24h Change
             </th>
-            <th onClick={() => sortCryptos('market_cap')}>Market Cap</th>
+            <th onClick={(e) => sortCryptos(e, 'market_cap')}>Market Cap</th>
           </tr>
         </thead>
         <tbody>
