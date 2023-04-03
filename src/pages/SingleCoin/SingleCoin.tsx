@@ -1,6 +1,6 @@
+import './SingleCoin.scss';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
 
 // styles
 import './SingleCoin.scss';

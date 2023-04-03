@@ -1,0 +1,12 @@
+.history__chart{
+    width: 650px;
+    min-height: 300px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 800px){
+    .history__chart{
+        width: 400px;
+    }
+    
+}

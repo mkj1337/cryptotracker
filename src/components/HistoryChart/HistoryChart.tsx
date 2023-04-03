@@ -1,3 +1,6 @@
+// styles
+import './HistoryChart.scss';
+
 import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
@@ -102,14 +105,10 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
 
   return (
     <div
-      style={{
-        width: '650px',
-        minHeight: '300px',
-        marginLeft: '50px',
-        paddingBottom: '50px',
-      }}
+    className='history__chart'
     >
       <Line data={data} options={options} />
     </div>
   );
 };
+
