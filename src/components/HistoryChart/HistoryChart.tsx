@@ -34,7 +34,7 @@ export const HistoryChart = () => {
     const fetchHistoryData = async () => {
       try {
         const { data } = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7&interval=daily`
+          `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=14&interval=daily`
         );
         setCoinData(data);
       } catch (err) {
