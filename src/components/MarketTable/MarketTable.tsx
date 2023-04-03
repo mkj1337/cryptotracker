@@ -11,6 +11,7 @@ export const MarketTable = () => {
   const [cryptos, setCryptos] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [clicks, setClicks] = useState<number>(0);
 
   useEffect(() => {
     const fetchTopCrypto = async () => {
@@ -29,6 +30,19 @@ export const MarketTable = () => {
     fetchTopCrypto();
   }, []);
 
+  const sortCryptos = (sortBy: string) => {
+    switch (clicks) {
+      case 0:
+        setClicks(1);
+        return cryptos.sort((a, b) => (b[sortBy] > a[sortBy] ? -1 : 1));
+      case 1:
+        setClicks(0);
+        return cryptos.sort((a, b) => (b[sortBy] < a[sortBy] ? -1 : 1));
+      default:
+        return cryptos;
+    }
+  };
+
   const lastPostIndex = currentPage * 10;
   const firstPostIndex = lastPostIndex - 10;
   const currentCryptos = cryptos.slice(firstPostIndex, lastPostIndex);
@@ -40,14 +54,15 @@ export const MarketTable = () => {
       className="market__wrapper"
       id="market"
     >
-      {/* <h2 className="market__title">Market Update</h2> */}
       <table>
         <thead>
           <tr>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>24h Change</th>
-            <th>Market Cap</th>
+            <th onClick={() => sortCryptos('name')}>Coin</th>
+            <th onClick={() => sortCryptos('current_price')}>Price</th>
+            <th onClick={() => sortCryptos('price_change_percentage_24h')}>
+              24h Change
+            </th>
+            <th onClick={() => sortCryptos('market_cap')}>Market Cap</th>
           </tr>
         </thead>
         <tbody>
@@ -62,7 +77,7 @@ export const MarketTable = () => {
                     </Link>
                   </td>
 
-                  <td>{crypto.current_price.toLocaleString()} $</td>
+                  <td>{crypto.current_price.toFixed(2).toLocaleString()} $</td>
                   <td
                     style={
                       crypto.price_change_percentage_24h > 0
