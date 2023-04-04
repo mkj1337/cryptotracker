@@ -5,6 +5,34 @@
     align-items: center;
     gap: 20px;
     margin-top: 160px;
+
+    .search__bar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+            background: transparent;
+            outline: none;
+            border-width: 2px;
+            border-style: solid;
+            border-image: linear-gradient(20deg, rgba(32,112,143,1) 3%, rgba(218,0,255,1) 97%) 1;
+            padding: 10px;
+            width: 40%;
+            font-size: 1rem;
+            color: #fff;
+            transition: .3s ease;
+            caret-color: rgb(255, 255, 0);
+
+            &::placeholder{
+                color: #fff;
+            }
+
+            &:focus {
+                border-color: rgb(255, 255, 0);
+            }
+        }
+    }
     
     table {
         width: 90%;

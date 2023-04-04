@@ -12,6 +12,7 @@ export const MarketTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [clicks, setClicks] = useState<number>(0);
+  const [search, setSearch] = useState<string>('');
   const headRef = useRef(null);
 
   useEffect(() => {
@@ -54,9 +55,23 @@ export const MarketTable = () => {
     }
   };
 
+  const searchCryptos = (data: any) => {
+    const keys: string[] = ['name', 'symbol'];
+
+    if (search.length) {
+      return data.filter((crypto: any) =>
+        keys.some((key) => crypto[key].toLowerCase().includes(search))
+      );
+    }
+    return data;
+  };
+
   const lastPostIndex = currentPage * 10;
   const firstPostIndex = lastPostIndex - 10;
-  const currentCryptos = cryptos.slice(firstPostIndex, lastPostIndex);
+  const currentCryptos = searchCryptos(cryptos).slice(
+    firstPostIndex,
+    lastPostIndex
+  );
 
   return (
     <motion.div
@@ -65,6 +80,19 @@ export const MarketTable = () => {
       className="market__wrapper"
       id="market"
     >
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.3 }}
+        className="search__bar"
+      >
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          placeholder="search a coin..."
+        />
+      </motion.div>
       <table>
         <thead>
           <tr ref={headRef}>
@@ -109,7 +137,7 @@ export const MarketTable = () => {
       </table>
       <div className="market__pagination">
         <Pagination
-          totalCryptos={cryptos.length}
+          totalCryptos={searchCryptos(cryptos).length}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
