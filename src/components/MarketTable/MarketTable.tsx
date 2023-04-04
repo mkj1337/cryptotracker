@@ -107,7 +107,7 @@ export const MarketTable = () => {
         <tbody>
           {isLoading && <span>Loading...</span>}
           {cryptos.length
-            ? currentCryptos.map((crypto) => (
+            ? currentCryptos.map((crypto: any) => (
                 <tr key={crypto.name}>
                   <td>
                     <Link to={`/coin/${crypto?.id}`}>
