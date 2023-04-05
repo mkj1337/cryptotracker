@@ -66,12 +66,12 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
       {
         label: coin,
         data: coinChartData?.map((val: any) => val.y),
-        borderColor: 'rgba(218,0,255,1)',
+        borderColor: '#d900ff32',
         backgroundColor: 'transparent',
         pointStyle: false,
         fill: {
           target: 'start',
-          above: '#d900ff32', // Area will be red above the origin
+          above: 'rgb(62, 52, 146)', // Area will be red above the origin
         },
       },
     ],
