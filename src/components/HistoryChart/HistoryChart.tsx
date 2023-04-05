@@ -11,7 +11,6 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
@@ -59,7 +58,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
     y: value[1].toFixed(2),
   }));
 
-  const data = {
+  const data: any = {
     labels: coinChartData?.map((value: any) =>
       moment(value.x).format('MMM DD HH')
     ),
@@ -69,6 +68,11 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
         data: coinChartData?.map((val: any) => val.y),
         borderColor: 'rgba(218,0,255,1)',
         backgroundColor: 'transparent',
+        pointStyle: false,
+        fill: {
+          target: 'start',
+          above: '#d900ff32', // Area will be red above the origin
+        },
       },
     ],
   };
@@ -99,7 +103,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
     },
   };
 
-  if (isLoading) return <span>Loading...</span>;
+  if (isLoading) return <span className="history__chart">Loading...</span>;
 
   return (
     <div className="history__chart">
