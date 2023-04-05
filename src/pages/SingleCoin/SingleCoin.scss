@@ -1,4 +1,19 @@
 .single__coin {
-    padding: 0 20px;
-   
+    padding: 160px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   .single__select{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    .single__option{
+        padding: 5px 10px;
+        background-color: #33333381;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+   }
 }

@@ -99,16 +99,12 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
     },
   };
 
-  console.log(coinData);
-
   if (isLoading) return <span>Loading...</span>;
 
   return (
-    <div
-    className='history__chart'
-    >
+    <div className="history__chart">
+      <h1>{coin?.toUpperCase()}</h1>
       <Line data={data} options={options} />
     </div>
   );
 };
-

@@ -115,7 +115,6 @@ export const MarketTable = () => {
                       <span>{crypto.name}</span>
                     </Link>
                   </td>
-
                   <td>{crypto.current_price.toFixed(2).toLocaleString()} $</td>
                   <td
                     style={
