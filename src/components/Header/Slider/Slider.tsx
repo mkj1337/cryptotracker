@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Slider.scss';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const Slider = () => {
   const [cryptos, setCryptos] = useState<any[]>([]);
@@ -23,7 +24,7 @@ export const Slider = () => {
   return (
     <>
       {cryptos.map((crypto) => (
-        <div className="header__single" key={crypto.id}>
+        <Link to={`/coin/${crypto?.id}`} className="header__single" key={crypto.id}>
           <img src={crypto?.image} alt="" />
           <h2>
             {crypto.name}{' '}
@@ -41,7 +42,7 @@ export const Slider = () => {
             </span>
           </h2>
           <div className="price">{crypto.current_price.toLocaleString()} $</div>
-        </div>
+        </Link>
       ))}
     </>
   );

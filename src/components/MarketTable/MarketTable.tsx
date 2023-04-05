@@ -13,6 +13,7 @@ export const MarketTable = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [clicks, setClicks] = useState<number>(0);
   const [search, setSearch] = useState<string>('');
+  const searchRef = useRef(null);
   const headRef = useRef(null);
 
   useEffect(() => {
@@ -73,6 +74,12 @@ export const MarketTable = () => {
     lastPostIndex
   );
 
+  const handleInputFocus = () => {
+    if (document.activeElement === searchRef.current) {
+      document.querySelector('table')?.scrollIntoView();
+    }
+  };
+
   return (
     <motion.div
       animate={{ y: 0, opacity: 1 }}
@@ -89,8 +96,10 @@ export const MarketTable = () => {
         <input
           type="text"
           value={search}
+          onFocus={handleInputFocus}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
           placeholder="search a coin..."
+          ref={searchRef}
         />
       </motion.div>
       <table>
