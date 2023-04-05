@@ -76,7 +76,7 @@ export const MarketTable = () => {
 
   const handleInputFocus = () => {
     if (document.activeElement === searchRef.current) {
-      document.querySelector('table')?.scrollIntoView();
+      document.querySelector('table thead')?.scrollIntoView();
     }
   };
 
