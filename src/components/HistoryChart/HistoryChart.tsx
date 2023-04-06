@@ -78,24 +78,48 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
   const options: any = {
     plugins: {
       legeng: false,
+      enabled: true,
+      usePointStyle: true,
+      tooltip: {
+        enabled: true,
+        usePointStyle: true,
+        callbacks: {
+
+        },
+      },
     },
+
     scales: {
-      y: {
-        ticks: {
-          font: {
-            size: '1px',
+      yAxes: [
+        {
+          gridLines: {
+            drawOnChartArea: false,
+            drawBorder: false,
           },
+        },
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            drawOnChartArea: false,
+            drawBorder: false,
+          },
+        },
+      ],
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
         },
       },
       x: {
         grid: {
-          borderDash: [6],
-          border: false,
+          display: false,
         },
         ticks: {
-          font: {
-            size: '1px',
-          },
+          display: false,
         },
       },
     },
