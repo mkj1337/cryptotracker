@@ -1,19 +1,118 @@
 .single__coin {
-    padding: 160px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   .single__select{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    
-    .single__option{
-        padding: 5px 10px;
-        background-color: #33333381;
-        cursor: pointer;
-        border-radius: 5px;
+    gap: 20px;
+    padding: 50px 150px;
+
+    .single__wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        width: 100%;
+
+        .single__chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          
+
+            .single__select{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                
+                .single__option{
+                    padding: 5px 10px;
+                    background-color: #33333381;
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
+               }
+        }
+
+        .single__header {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+
+            .single__info{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                
+                img {
+                    width: 80%;
+                    height: 80%;
+                }
+
+                .single__name {
+                    font-size: 2.5rem;
+                    letter-spacing: .1rem;
+                }
+            }
+        
+            .single__details {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+
+                .single__desc {
+                    height: 200px;
+                    max-width: 800px;
+                    font-size: 1.4rem;
+                    padding: 5px;
+                    line-height: 1.9rem;
+                    overflow-y: scroll;
+
+                          
+                &::-webkit-scrollbar {
+                     width: 10px;
+                }
+  
+                &::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 5px rgb(124, 124, 124); 
+                    border-radius: 5px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: rgb(187, 167, 167);
+                    border-radius: 5px;
+                }
+                    
+                    a {
+                        color: rgb(153, 142, 255)
+                    }
+                }
+
+                .single__bottom{
+                   display: flex;
+                   justify-content: space-between;
+                   flex-wrap: wrap;
+                   width: 100%;
+                   padding: 20px 30px;
+                   font-size: 1.3rem;
+                   
+                   span {
+                    width: 200px;
+                   }
+                }
+            }
+        }
+    }    
+}
+
+@media screen and (max-width: 400px){
+    .single__desc{
+        width: 100%!important;
     }
-   }
+    
 }

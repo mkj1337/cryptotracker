@@ -26,6 +26,7 @@ ChartJS.register(
   Tooltip,
   Filler
 );
+import { SyncLoader } from 'react-spinners';
 
 interface HistoryChartProps {
   value: string;
@@ -66,7 +67,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
       {
         label: coin,
         data: coinChartData?.map((val: any) => val.y),
-        borderColor: '#d900ff32',
+        borderColor: 'rgb(74, 64, 167)',
         backgroundColor: 'transparent',
         pointStyle: false,
         fill: {
@@ -103,12 +104,15 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
     },
   };
 
-  if (isLoading) return <span className="history__chart">Loading...</span>;
-
   return (
     <div className="history__chart">
-      <h1>{coin?.toUpperCase()}</h1>
-      <Line data={data} options={options} />
+      {isLoading ? (
+        <div className="history__loader">
+          <SyncLoader color="rgb(62, 52, 146)" />
+        </div>
+      ) : (
+        <Line data={data} options={options} />
+      )}
     </div>
   );
 };

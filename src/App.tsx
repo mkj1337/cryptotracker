@@ -5,7 +5,6 @@ import './styles.scss';
 
 // components
 import { Navbar } from './components/Navbar/Navbar';
-import { Footer } from './components/Footer/Footer';
 
 // pages
 import { Home } from './pages/Home/Home';
@@ -16,7 +15,6 @@ const Layout = () => {
     <>
       <Navbar />
       <Outlet />
-      <Footer />
     </>
   );
 };

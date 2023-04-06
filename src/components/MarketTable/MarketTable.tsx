@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { Pagination } from '../Pagination/Pagination';
+import { Link } from 'react-router-dom';
+import { isPositive } from '../../utils';
+import { SyncLoader } from 'react-spinners';
 
 // styles
 import './MarketTable.scss';
-import { Pagination } from '../Pagination/Pagination';
-import { Link } from 'react-router-dom';
+
+interface cryptosProps {
+  id: string;
+  name: string;
+  image: string;
+  current_price: number | string;
+  price_change_percentage_24h: number | string;
+  market_cap: number | string;
+}
 
 export const MarketTable = () => {
-  const [cryptos, setCryptos] = useState<any[]>([]);
+  const [cryptos, setCryptos] = useState<cryptosProps[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [clicks, setClicks] = useState<number>(0);
@@ -34,8 +45,8 @@ export const MarketTable = () => {
   }, []);
 
   const sortCryptos = (
-    e: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>,
-    sortBy: string
+    e: React.MouseEvent<HTMLTableCellElement, MouseEvent>,
+    sortBy: string,
   ) => {
     if (headRef.current) {
       Array.from(headRef.current['children']).forEach((el) => {
@@ -47,10 +58,12 @@ export const MarketTable = () => {
     switch (clicks) {
       case 0:
         setClicks(1);
-        return cryptos.sort((a, b) => (b[sortBy] < a[sortBy] ? -1 : 1));
+        return cryptos.sort((a: any, b: any) =>
+          b[sortBy] < a[sortBy] ? -1 : 1
+        );
       case 1:
         setClicks(0);
-        return cryptos.sort((a, b) => (b[sortBy] > a[sortBy] ? -1 : 1));
+        return cryptos.sort((a: any, b: any) => (b[sortBy] > a[sortBy] ? -1 : 1));
       default:
         return cryptos;
     }
@@ -76,7 +89,11 @@ export const MarketTable = () => {
 
   const handleInputFocus = () => {
     if (document.activeElement === searchRef.current) {
-      document.querySelector('table thead')?.scrollIntoView(true);
+      const cor = document
+        .querySelector('input[type="text"]')
+        ?.getBoundingClientRect() as DOMRect;
+      const { x, y } = cor;
+      window.scrollTo(x, y);
     }
   };
 
@@ -113,31 +130,42 @@ export const MarketTable = () => {
             <th onClick={(e) => sortCryptos(e, 'market_cap')}>Market Cap</th>
           </tr>
         </thead>
-        <tbody>
-          {isLoading && <span>Loading...</span>}
+        <tbody
+          style={
+            isLoading
+              ? {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }
+              : {}
+          }
+        >
+          {isLoading && <SyncLoader color="rgb(62, 52, 146)" />}
           {cryptos.length
-            ? currentCryptos.map((crypto: any) => (
-                <tr key={crypto.name}>
+            ? currentCryptos.map((crypto: cryptosProps) => (
+                <tr key={crypto?.name}>
                   <td>
                     <Link to={`/coin/${crypto?.id}`}>
-                      <img src={crypto.image} alt="" />
-                      <span>{crypto.name}</span>
+                      <img src={crypto?.image} alt="" />
+                      <span>{crypto?.name}</span>
                     </Link>
                   </td>
-                  <td>{crypto.current_price.toFixed(2).toLocaleString()} $</td>
+                  <td>
+                    {Number(crypto?.current_price)?.toFixed(2).toLocaleString()}{' '}
+                    $
+                  </td>
                   <td
-                    style={
-                      crypto.price_change_percentage_24h > 0
-                        ? { color: 'green' }
-                        : { color: 'red' }
-                    }
+                    style={isPositive(
+                      Number(crypto?.price_change_percentage_24h)
+                    )}
                   >
-                    {Number(crypto.price_change_percentage_24h)
+                    {Number(crypto?.price_change_percentage_24h)
                       .toFixed(2)
                       .toLocaleString()}
                     %
                   </td>
-                  <td>{crypto.market_cap.toLocaleString()} $</td>
+                  <td>{crypto?.market_cap?.toLocaleString()} $</td>
                 </tr>
               ))
             : ''}

@@ -11,3 +11,10 @@
         padding: 35px 30px;
     }
 }
+
+@media screen and (max-width: 400px){
+    .history__chart{
+        width: 200px;
+    }
+    
+}
