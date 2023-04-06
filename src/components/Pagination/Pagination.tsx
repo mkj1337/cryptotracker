@@ -19,7 +19,7 @@ export const Pagination = ({
   }
   return (
     <div className="pagination__wrapper">
-      {pages.map((page, index) => (
+      {pages.slice().map((page, index) => (
         <button
           className={page === currentPage ? 'active' : ''}
           style={page > 9 ? { padding: '7px' } : {}}
