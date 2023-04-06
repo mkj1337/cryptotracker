@@ -19,7 +19,6 @@
             flex-direction: column;
             align-items: center;
           
-
             .single__select{
                 display: flex;
                 align-items: center;
@@ -113,6 +112,17 @@
 @media screen and (max-width: 400px){
     .single__desc{
         width: 100%!important;
+    }
+
+    .single__chart {
+
+        .single__select{
+            gap: 3px!important;
+            
+            .single__option{
+                padding: 5px!important;
+            }
+           }
     }
     
 }
