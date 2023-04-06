@@ -14,15 +14,24 @@
         color: #fff;
         border: 1px solid #fff;
         border-radius: 50%;
+        transition: .3s ease;
         cursor: pointer;
 
         &:hover {
-            background: linear-gradient(28deg, rgb(172, 95, 196) 20%, rgb(25, 109, 103) 35%, rgb(13, 161, 190) 100%);
+            background: rgba(168, 56, 202, 0.671);
         }
     }
 
     button.active {
         border-color: #faa9b6
+    }
+}
+
+@media screen and (max-width: 800px){
+    .pagination__wrapper{
+        button {
+            font-size: .8rem;
+        }
     }
 }
 

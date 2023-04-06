@@ -1,6 +1,4 @@
-// styles
-import './HistoryChart.scss';
-
+import { SyncLoader } from 'react-spinners';
 import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
@@ -15,7 +13,11 @@ import {
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
+import { HistoryChartProps } from '../../interfaces';
 import axios from 'axios';
+
+// styles
+import './HistoryChart.scss';
 
 ChartJS.register(
   CategoryScale,
@@ -26,11 +28,6 @@ ChartJS.register(
   Tooltip,
   Filler
 );
-import { SyncLoader } from 'react-spinners';
-
-interface HistoryChartProps {
-  value: string;
-}
 
 export const HistoryChart = ({ value }: HistoryChartProps) => {
   const { coin } = useParams();

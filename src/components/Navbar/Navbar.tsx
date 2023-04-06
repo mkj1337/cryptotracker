@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 
@@ -10,9 +9,9 @@ import { FaDiscord, FaTwitter, FaBars } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 
 export const Navbar = () => {
-  const navRef = useRef<any>(null);
-  const menuRef = useRef<any>(null);
-  const socialRef = useRef<any>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
 
   const handleScroll = () => {
@@ -28,7 +27,6 @@ export const Navbar = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
 
   const handleClick = () => {
     setActiveMenu(!activeMenu);
@@ -66,8 +64,8 @@ export const Navbar = () => {
           </a>
         </li>
         <li className="navbar__item">
-          <a href="#" id="join">
-            Join
+          <a href="#" id="faq">
+            Faq
           </a>
         </li>
       </ul>

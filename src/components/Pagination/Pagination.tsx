@@ -1,22 +1,19 @@
+import { PaginationProps } from '../../interfaces';
+
 // styles
 import './Pagination.scss';
-
-interface PaginationProps {
-  totalCryptos: number;
-  currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-}
 
 export const Pagination = ({
   totalCryptos,
   currentPage,
   setCurrentPage,
 }: PaginationProps) => {
-  let pages = [];
+  let pages: number[] = [];
 
   for (let i = 1; i <= Math.ceil(totalCryptos / 10); i++) {
     pages.push(i);
   }
+
   return (
     <div className="pagination__wrapper">
       {pages.slice().map((page, index) => (

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { SyncLoader } from 'react-spinners';
-import './Slider.scss';
-import axios from 'axios';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { isPositive } from '../../../utils';
+import { cryptosProps } from '../../../interfaces';
+import axios from 'axios';
+
+// styles
+import './Slider.scss';
 
 export const Slider = () => {
-  const [cryptos, setCryptos] = useState<any[]>([]);
+  const [cryptos, setCryptos] = useState<cryptosProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,32 +32,28 @@ export const Slider = () => {
   return (
     <>
       {isLoading ? (
-        <SyncLoader color='rgb(62, 52, 146)' />
+        <SyncLoader color="rgb(62, 52, 146)" />
       ) : (
         cryptos.map((crypto) => (
           <Link
             to={`/coin/${crypto?.id}`}
             className="header__single"
-            key={crypto.id}
+            key={crypto?.id}
           >
             <img src={crypto?.image} alt="" />
             <h2>
-              {crypto.name}{' '}
+              {crypto?.name}{' '}
               <span
-                style={
-                  crypto.price_change_percentage_24h > 0
-                    ? { color: 'green' }
-                    : { color: 'red' }
-                }
+                style={isPositive(Number(crypto?.price_change_percentage_24h))}
               >
-                {parseFloat(crypto.price_change_percentage_24h)
+                {Number(crypto?.price_change_percentage_24h)
                   .toFixed(2)
                   .toLocaleString()}
                 %
               </span>
             </h2>
             <div className="price">
-              {crypto.current_price.toLocaleString()} $
+              {Number(crypto?.current_price).toFixed(2).toLocaleString()} $
             </div>
           </Link>
         ))

@@ -1,22 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Pagination } from '../Pagination/Pagination';
 import { Link } from 'react-router-dom';
 import { isPositive } from '../../utils';
 import { SyncLoader } from 'react-spinners';
+import { cryptosProps } from '../../interfaces';
+import axios from 'axios';
 
 // styles
 import './MarketTable.scss';
-
-interface cryptosProps {
-  id: string;
-  name: string;
-  image: string;
-  current_price: number | string;
-  price_change_percentage_24h: number | string;
-  market_cap: number | string;
-}
 
 export const MarketTable = () => {
   const [cryptos, setCryptos] = useState<cryptosProps[]>([]);
@@ -24,8 +16,8 @@ export const MarketTable = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [clicks, setClicks] = useState<number>(0);
   const [search, setSearch] = useState<string>('');
-  const searchRef = useRef(null);
-  const headRef = useRef(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const headRef = useRef<HTMLTableRowElement>(null);
 
   useEffect(() => {
     const fetchTopCrypto = async () => {
@@ -46,7 +38,7 @@ export const MarketTable = () => {
 
   const sortCryptos = (
     e: React.MouseEvent<HTMLTableCellElement, MouseEvent>,
-    sortBy: string,
+    sortBy: string
   ) => {
     if (headRef.current) {
       Array.from(headRef.current['children']).forEach((el) => {
@@ -63,7 +55,9 @@ export const MarketTable = () => {
         );
       case 1:
         setClicks(0);
-        return cryptos.sort((a: any, b: any) => (b[sortBy] > a[sortBy] ? -1 : 1));
+        return cryptos.sort((a: any, b: any) =>
+          b[sortBy] > a[sortBy] ? -1 : 1
+        );
       default:
         return cryptos;
     }
@@ -98,7 +92,7 @@ export const MarketTable = () => {
   };
 
   return (
-    <motion.div
+    <motion.section
       animate={{ y: 0, opacity: 1 }}
       initial={{ y: -50, opacity: 0 }}
       className="market__wrapper"
@@ -178,6 +172,6 @@ export const MarketTable = () => {
           setCurrentPage={setCurrentPage}
         />
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
