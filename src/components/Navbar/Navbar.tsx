@@ -25,7 +25,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const handleClick = () => {
     setActiveMenu(!activeMenu);
