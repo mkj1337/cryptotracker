@@ -86,7 +86,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
       y: {
         ticks: {
           font: {
-            size: '0px',
+            size: '1px',
           },
         },
       },
