@@ -1,37 +1,19 @@
-import './SingleCoin.scss';
 import { useState, useEffect } from 'react';
-import DOMPurify from 'dompurify';
 import { SyncLoader } from 'react-spinners';
+import { coinDataProps } from '../../interfaces';
+import { HistoryChart } from '../../components/HistoryChart/HistoryChart';
+import { useParams } from 'react-router-dom';
+import { isPositive } from '../../utils';
+import DOMPurify from 'dompurify';
+import axios from 'axios';
 
 // styles
 import './SingleCoin.scss';
-import { HistoryChart } from '../../components/HistoryChart/HistoryChart';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { isPositive } from '../../utils';
-
-interface coinDataProps {
-  name: string;
-  image: {
-    large: string;
-  };
-  description: {
-    en: string;
-  };
-  market_data: {
-    current_price: {
-      usd: string | number;
-    };
-    price_change_percentage_24h: string | number;
-  };
-  symbol: string;
-  coingecko_rank: string | number;
-}
 
 export const SingleCoin = () => {
   const { coin } = useParams();
   const [value, setValue] = useState<string>('1');
-  const [coinData, setCoinData] = useState({} as coinDataProps);
+  const [coinData, setCoinData] = useState<coinDataProps>({} as coinDataProps);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -55,7 +37,7 @@ export const SingleCoin = () => {
     <section className="single__coin">
       <div className="single__wrapper">
         {isLoading ? (
-          <SyncLoader color='rgb(62, 52, 146)' />
+          <SyncLoader color="rgb(62, 52, 146)" />
         ) : (
           <>
             <div className="single__chart">
