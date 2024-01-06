@@ -1,0 +1,5 @@
+[[rewrite]]
+  from = "/api"
+  to = "https://api.coingecko.com"
+  status = 200
+  headers = {X-From = "Netlify"}
