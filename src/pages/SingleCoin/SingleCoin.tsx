@@ -21,7 +21,7 @@ export const SingleCoin = () => {
       setIsLoading(true);
       try {
         const { data } = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/${coin}`
+          `/api/v3/coins/${coin}`
         );
         setIsLoading(false);
         setCoinData(data);
