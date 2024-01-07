@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api.coingecko.com',
+        target: 'https://openapiv1.coinstats.app',
         secure: false,
         changeOrigin: true,
       },

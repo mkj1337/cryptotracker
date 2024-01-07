@@ -9,6 +9,7 @@ import axios from 'axios';
 
 // styles
 import './MarketTable.scss';
+import { options } from '../../api';
 
 export const MarketTable = () => {
   const [cryptos, setCryptos] = useState<cryptosProps[]>([]);
@@ -24,9 +25,10 @@ export const MarketTable = () => {
       setIsLoading(true);
       try {
         const { data } = await axios.get(
-          `/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
+          `https://openapiv1.coinstats.app/coins`,
+          options
         );
-        setCryptos(data);
+        setCryptos(data.result);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -141,25 +143,17 @@ export const MarketTable = () => {
                 <tr key={crypto?.name}>
                   <td>
                     <Link to={`/coin/${crypto?.id}`}>
-                      <img src={crypto?.image} alt="" />
+                      <img src={crypto?.icon} alt="" />
                       <span>{crypto?.name}</span>
                     </Link>
                   </td>
                   <td>
-                    {Number(crypto?.current_price)?.toFixed(2).toLocaleString()}{' '}
-                    $
+                    {Number(crypto?.price)?.toFixed(2).toLocaleString()} $
                   </td>
-                  <td
-                    style={isPositive(
-                      Number(crypto?.price_change_percentage_24h)
-                    )}
-                  >
-                    {Number(crypto?.price_change_percentage_24h)
-                      .toFixed(2)
-                      .toLocaleString()}
-                    %
+                  <td style={isPositive(Number(crypto?.priceChange1d))}>
+                    {Number(crypto?.priceChange1d).toFixed(2).toLocaleString()}%
                   </td>
-                  <td>{crypto?.market_cap?.toLocaleString()} $</td>
+                  <td>{crypto?.marketCap?.toLocaleString()} $</td>
                 </tr>
               ))
             : ''}

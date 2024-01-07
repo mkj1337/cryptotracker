@@ -7,10 +7,10 @@ export interface PaginationProps {
 export interface cryptosProps {
   id: string;
   name: string;
-  image: string;
-  current_price: number | string;
-  price_change_percentage_24h: number | string;
-  market_cap: number | string;
+  icon: string;
+  price: number | string;
+  priceChange1d: number | string;
+  marketCap: number | string;
 }
 
 export interface HistoryChartProps {

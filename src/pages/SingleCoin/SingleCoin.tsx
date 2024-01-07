@@ -9,6 +9,7 @@ import axios from 'axios';
 
 // styles
 import './SingleCoin.scss';
+import { options } from '../../api';
 
 export const SingleCoin = () => {
   const { coin } = useParams();
@@ -21,7 +22,8 @@ export const SingleCoin = () => {
       setIsLoading(true);
       try {
         const { data } = await axios.get(
-          `/api/v3/coins/${coin}`
+          `https://openapiv1.coinstats.app/coins/${coin}`,
+          options
         );
         setIsLoading(false);
         setCoinData(data);

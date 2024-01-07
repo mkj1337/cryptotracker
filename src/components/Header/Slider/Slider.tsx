@@ -7,6 +7,7 @@ import axios from 'axios';
 
 // styles
 import './Slider.scss';
+import { options } from '../../../api';
 
 export const Slider = () => {
   const [cryptos, setCryptos] = useState<cryptosProps[]>([]);
@@ -17,10 +18,11 @@ export const Slider = () => {
     const fetchTopCrypto = async () => {
       try {
         const { data } = await axios.get(
-          'https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false&locale=en'
+          'https://openapiv1.coinstats.app/coins?limit=5',
+          options
         );
         setIsLoading(false);
-        setCryptos(data);
+        setCryptos(data.result);
       } catch (err) {
         setIsLoading(false);
         console.log(err);
@@ -40,20 +42,15 @@ export const Slider = () => {
             className="header__single"
             key={crypto?.id}
           >
-            <img src={crypto?.image} alt="" />
+            <img src={crypto?.icon} alt="" />
             <h2>
               {crypto?.name}{' '}
-              <span
-                style={isPositive(Number(crypto?.price_change_percentage_24h))}
-              >
-                {Number(crypto?.price_change_percentage_24h)
-                  .toFixed(2)
-                  .toLocaleString()}
-                %
+              <span style={isPositive(Number(crypto?.priceChange1d))}>
+                {Number(crypto?.priceChange1d).toFixed(2).toLocaleString()}%
               </span>
             </h2>
             <div className="price">
-              {Number(crypto?.current_price).toFixed(2).toLocaleString()} $
+              {Number(crypto?.price).toFixed(2).toLocaleString()} $
             </div>
           </Link>
         ))
