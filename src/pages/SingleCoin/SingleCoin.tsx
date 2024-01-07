@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SyncLoader } from 'react-spinners';
-import { coinDataProps } from '../../interfaces';
+import { coinDataProps, cryptosProps } from '../../interfaces';
 import { HistoryChart } from '../../components/HistoryChart/HistoryChart';
 import { useParams } from 'react-router-dom';
 import { isPositive } from '../../utils';
@@ -14,7 +14,7 @@ import { options } from '../../api';
 export const SingleCoin = () => {
   const { coin } = useParams();
   const [value, setValue] = useState<string>('1');
-  const [coinData, setCoinData] = useState<coinDataProps>({} as coinDataProps);
+  const [coinData, setCoinData] = useState<cryptosProps>({} as cryptosProps);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const SingleCoin = () => {
         ) : (
           <>
             <div className="single__chart">
-              <HistoryChart value={value} />
+              {/* <HistoryChart value={value} /> */}
               <div className="single__select">
                 <div
                   className="single__option"
@@ -133,48 +133,30 @@ export const SingleCoin = () => {
             </div>
             <div className="single__header">
               <div className="single__info">
-                <img src={coinData?.image?.large} alt={coinData?.name} />
+                <img src={coinData?.icon} alt={coinData?.name} />
                 <h1 className="single__name">{coinData?.name}</h1>
-                <span className="single__rank">
-                  Rank: #{coinData?.coingecko_rank}
-                </span>
+                <span className="single__rank">Rank: #{coinData?.rank}</span>
               </div>
               <div className="single__details">
-                <p
+                {/* <p
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(
                       coinData.description ? coinData.description.en : ''
                     ),
                   }}
                   className="single__desc"
-                ></p>
+                ></p> */}
                 <div className="single__bottom">
                   <span>
                     Price:{' '}
-                    <span
-                      style={isPositive(
-                        Number(
-                          coinData?.market_data?.price_change_percentage_24h
-                        )
-                      )}
-                    >
-                      {coinData?.market_data?.current_price?.usd?.toLocaleString()}
-                      $
+                    <span style={isPositive(Number(coinData?.priceChange1d))}>
+                      {coinData?.price.toLocaleString()}$
                     </span>
                   </span>
                   <span>
                     24h Change:{' '}
-                    <span
-                      style={isPositive(
-                        Number(
-                          coinData?.market_data?.price_change_percentage_24h
-                        )
-                      )}
-                    >
-                      {Number(
-                        coinData?.market_data?.price_change_percentage_24h
-                      )?.toFixed(2)}
-                      %
+                    <span style={isPositive(Number(coinData?.priceChange1d))}>
+                      {Number(coinData?.priceChange1d)?.toFixed(2)}%
                     </span>
                   </span>
                   <span>Symbol: {coinData?.symbol?.toUpperCase()}</span>

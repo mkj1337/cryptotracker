@@ -11,6 +11,8 @@ export interface cryptosProps {
   price: number | string;
   priceChange1d: number | string;
   marketCap: number | string;
+  rank?: number;
+  symbol?: string;
 }
 
 export interface HistoryChartProps {
