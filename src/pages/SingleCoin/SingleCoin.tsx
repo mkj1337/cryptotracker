@@ -150,7 +150,7 @@ export const SingleCoin = () => {
                   <span>
                     Price:{' '}
                     <span style={isPositive(Number(coinData?.priceChange1d))}>
-                      {coinData?.price.toLocaleString()}$
+                      {Number(coinData?.price).toFixed(2)}$
                     </span>
                   </span>
                   <span>

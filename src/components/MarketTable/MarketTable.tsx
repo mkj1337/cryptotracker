@@ -25,7 +25,7 @@ export const MarketTable = () => {
       setIsLoading(true);
       try {
         const { data } = await axios.get(
-          `https://openapiv1.coinstats.app/coins`,
+          `https://openapiv1.coinstats.app/coins?limit=50`,
           options
         );
         setCryptos(data.result);
