@@ -119,11 +119,11 @@ export const MarketTable = () => {
         <thead>
           <tr ref={headRef}>
             <th onClick={(e) => sortCryptos(e, 'name')}>Coin</th>
-            <th onClick={(e) => sortCryptos(e, 'current_price')}>Price</th>
-            <th onClick={(e) => sortCryptos(e, 'price_change_percentage_24h')}>
+            <th onClick={(e) => sortCryptos(e, 'price')}>Price</th>
+            <th onClick={(e) => sortCryptos(e, 'priceChange1d')}>
               24h Change
             </th>
-            <th onClick={(e) => sortCryptos(e, 'market_cap')}>Market Cap</th>
+            <th onClick={(e) => sortCryptos(e, 'marketCap')}>Market Cap</th>
           </tr>
         </thead>
         <tbody
