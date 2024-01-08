@@ -80,7 +80,7 @@
                 .single__bottom{
                    display: flex;
                    justify-content: space-between;
-                   flex-wrap: wrap;
+    
                    width: 100%;
                    padding: 20px 30px;
                    font-size: 1.3rem;
@@ -99,10 +99,17 @@
     }    
 }
 
+@media screen and (max-width:800px){
+    .single__coin {
+        padding: 20px 0;
+    }
+}
+
 @media screen and (max-width: 400px){
     .single__desc{
         width: 100%!important;
     }
+
 
     .single__chart {
 
