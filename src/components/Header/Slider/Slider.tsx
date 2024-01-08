@@ -42,7 +42,7 @@ export const Slider = () => {
             className="header__single"
             key={crypto?.id}
           >
-            <img src={crypto?.icon} alt="" />
+            <img src={crypto?.icon} alt="" className='crypto__image'/>
             <h2>
               {crypto?.name}{' '}
               <span style={isPositive(Number(crypto?.priceChange1d))}>

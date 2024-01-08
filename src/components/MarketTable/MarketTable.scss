@@ -107,7 +107,15 @@
 }
 
 @media screen and (max-width: 800px){
+    .search__bar {
+        input {
+            width: 75%!important;
+        }
+    }
+                        
     .market__wrapper{
+        table {
+            width: 100%;
         thead{
             th{
                 font-size: 1rem!important;
@@ -117,7 +125,6 @@
                 }
             }
         }
-
         tbody {
             tr{
                 td:last-child{
@@ -125,6 +132,7 @@
                 }
             }
         }
+    }
     }
     
 }

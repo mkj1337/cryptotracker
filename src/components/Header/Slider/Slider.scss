@@ -2,5 +2,14 @@ a{
     text-decoration: none;
     color: #fff;
 
-    
+    .crypto__image {
+        width: 75px!important;
+    }
+
+
+    @media screen and (max-width: 800px){
+        .crypto__image{
+            width: 50px!important;
+        }
+    }
 }
