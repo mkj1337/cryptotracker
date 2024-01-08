@@ -15,7 +15,7 @@ import moment from 'moment';
 import { useParams } from 'react-router-dom';
 import { HistoryChartProps } from '../../interfaces';
 import axios from 'axios';
-
+import { options as config } from '../../api';
 // styles
 import './HistoryChart.scss';
 
@@ -39,7 +39,8 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
       setIsLoading(true);
       try {
         const { data } = await axios.get(
-          `/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${value}&interval=daily`
+          `https://openapiv1.coinstats.app/coins/${coin}/charts?period=${value}`,
+          config
         );
         setCoinData(data);
         setIsLoading(false);
@@ -51,7 +52,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
     fetchHistoryData();
   }, [value]);
 
-  const coinChartData = coinData.prices?.map((value: any) => ({
+  const coinChartData = coinData.map((value: any) => ({
     x: value[0],
     y: value[1].toFixed(2),
   }));
@@ -83,9 +84,7 @@ export const HistoryChart = ({ value }: HistoryChartProps) => {
       tooltip: {
         enabled: true,
         usePointStyle: true,
-        callbacks: {
-
-        },
+        callbacks: {},
       },
     },
 

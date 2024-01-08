@@ -10,7 +10,7 @@ export const Pagination = ({
 }: PaginationProps) => {
   let pages: number[] = [];
 
-  for (let i = 1; i <= Math.ceil(totalCryptos / 10); i++) {
+  for (let i = 1; i <= Math.ceil(totalCryptos / 7); i++) {
     pages.push(i);
   }
 

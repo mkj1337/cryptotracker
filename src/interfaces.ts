@@ -13,6 +13,9 @@ export interface cryptosProps {
   marketCap: number | string;
   rank?: number;
   symbol?: string;
+  redditUrl?: string;
+  twitterUrl?: string;
+  websiteUrl?: string;
 }
 
 export interface HistoryChartProps {

@@ -76,8 +76,8 @@ export const MarketTable = () => {
     return data;
   };
 
-  const lastPostIndex = currentPage * 10;
-  const firstPostIndex = lastPostIndex - 10;
+  const lastPostIndex = currentPage * 7;
+  const firstPostIndex = lastPostIndex - 7;
   const currentCryptos = searchCryptos(cryptos).slice(
     firstPostIndex,
     lastPostIndex
