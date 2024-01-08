@@ -135,7 +135,7 @@ export const MarketTable = () => {
               : {}
           }
         >
-          {!cryptos.length
+          {cryptos.length
             ? currentCryptos.map((crypto: cryptosProps) => (
                 <tr key={crypto?.name}>
                   <td>
@@ -156,7 +156,7 @@ export const MarketTable = () => {
             : ''}
         </tbody>
       </table>
-      {!isLoading && (
+      {isLoading && (
         <div className="loading">
           <SyncLoader color="rgb(62, 52, 146)" />
         </div>
