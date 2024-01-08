@@ -120,9 +120,7 @@ export const MarketTable = () => {
           <tr ref={headRef}>
             <th onClick={(e) => sortCryptos(e, 'name')}>Coin</th>
             <th onClick={(e) => sortCryptos(e, 'price')}>Price</th>
-            <th onClick={(e) => sortCryptos(e, 'priceChange1d')}>
-              24h Change
-            </th>
+            <th onClick={(e) => sortCryptos(e, 'priceChange1d')}>24h Change</th>
             <th onClick={(e) => sortCryptos(e, 'marketCap')}>Market Cap</th>
           </tr>
         </thead>
@@ -137,8 +135,7 @@ export const MarketTable = () => {
               : {}
           }
         >
-          {isLoading && <SyncLoader color="rgb(62, 52, 146)" />}
-          {cryptos.length
+          {!cryptos.length
             ? currentCryptos.map((crypto: cryptosProps) => (
                 <tr key={crypto?.name}>
                   <td>
@@ -159,6 +156,11 @@ export const MarketTable = () => {
             : ''}
         </tbody>
       </table>
+      {!isLoading && (
+        <div className="loading">
+          <SyncLoader color="rgb(62, 52, 146)" />
+        </div>
+      )}
       <div className="market__pagination">
         <Pagination
           totalCryptos={searchCryptos(cryptos).length}

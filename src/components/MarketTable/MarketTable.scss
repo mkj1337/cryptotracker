@@ -99,6 +99,13 @@
     }
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+}
+
 @media screen and (max-width: 800px){
     .market__wrapper{
         thead{
