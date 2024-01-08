@@ -153,18 +153,21 @@ export const SingleCoin = () => {
                 </div>
                 <div className="single__bottom">
                   <span>
-                    Price:
+                    Price: &nbsp;
                     <span style={isPositive(Number(coinData?.priceChange1d))}>
                       {Number(coinData?.price).toFixed(2)}$
                     </span>
                   </span>
                   <span>
-                    24h Change:
+                    24h Change: &nbsp;
                     <span style={isPositive(Number(coinData?.priceChange1d))}>
                       {Number(coinData?.priceChange1d)?.toFixed(2)}%
                     </span>
                   </span>
-                  <span>Symbol: {coinData?.symbol?.toUpperCase()}</span>
+                  <span>
+                    Symbol: &nbsp;{' '}
+                    <span> {coinData?.symbol?.toUpperCase()}</span>
+                  </span>
                 </div>
               </div>
             </div>
